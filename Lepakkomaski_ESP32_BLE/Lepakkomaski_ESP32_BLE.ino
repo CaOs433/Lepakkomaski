@@ -14,6 +14,7 @@
 #define echoPin 25 // define the HC-SR04 echo Pin
 #define trigPin 26 // define the HC-SR04 trig Pin
 
+// Counter for test value
 int counter;
 
 // Distance value
@@ -27,6 +28,8 @@ BLEAdvertising *pAdvertising;
 
 int measure();
 bool getShock();
+// Reset function
+void(* resetFunc) (void) = 0;
 
 // Callbacks to handle the received data
 class MyCallbacks: public BLECharacteristicCallbacks {
@@ -35,10 +38,22 @@ class MyCallbacks: public BLECharacteristicCallbacks {
       // Print received value on Serial Monitor (if value length is bigger than zero)
       if (value.length() > 0) {
         Serial.print("\nReceived new value: ");
-        for (int i = 0; i < value.length(); i++)
+        for (int i = 0; i < value.length(); i++) {
           Serial.print(value[i]);
+          // ...
+        }
 
         Serial.println();
+
+        // Switch cases for different values
+        switch (value[0]) {
+          case '0': Serial.println("RESET"); resetFunc(); // Call reset function if first char is '0'
+          case '1': break; // ...
+          case '2': break; // ...
+          // ...
+
+          default: break;
+        }
       }
     }
 };
@@ -54,7 +69,7 @@ void setup() {
   pServer = BLEDevice::createServer();
   // Create service for BLE server
   pService = pServer->createService(SERVICE_UUID);
-// Create charasteristic for the BLE service (this will include the distance value)
+  // Create charasteristic for the BLE service (this will include the distance value)
   pCharacteristic = pService->createCharacteristic(
                                          CHARACTERISTIC_UUID,
                                          BLECharacteristic::PROPERTY_READ |
@@ -95,11 +110,11 @@ void loop() {
   }
 
   // Get distance
-  int val = measure();
+  int dVal = measure();
   // Update BLE distance charasteristic value if the distance has new value and is in the right range
-  if (val != distance && val >= 2 && val <= 400) {
+  if (dVal != distance && dVal >= 2 && dVal <= 400) {
     //delay(10);
-    String distanceStr = String(val);//counter); //measure()); //+" - Counter:\t "+String(counter);
+    String distanceStr = String(dVal);//counter); //measure()); //+" - Counter:\t "+String(counter);
     //delay(10);
     pCharacteristic->setValue(std::string(distanceStr.c_str()));
   }
@@ -135,8 +150,8 @@ int measure() {
 
 // Reads shock sensors value and returns true if a shock happened
 bool getShock() {
-  int val = digitalRead(shock); // read the value from KY-002
-  if (val == HIGH ) { 
+  int sVal = digitalRead(shock); // read the value from KY-002
+  if (sVal == HIGH ) { 
     return true;
   } else {
     return false;
