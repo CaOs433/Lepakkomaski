@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F587792258566C000BD202E /* Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F587791258566BF00BD202E /* Bluetooth.swift */; };
+		3F5877972585694A00BD202E /* BLEPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5877962585694A00BD202E /* BLEPeripheral.swift */; };
+		3F58779F2585821F00BD202E /* BLECentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F58779E2585821F00BD202E /* BLECentral.swift */; };
+		3F5877AA25884F7100BD202E /* LepakkomaskiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5877A925884F7000BD202E /* LepakkomaskiView.swift */; };
+		3F5877AF2588511400BD202E /* BLEClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5877AE2588511400BD202E /* BLEClass.swift */; };
+		3F5877BE258A8C0700BD202E /* GlobalTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5877BD258A8C0600BD202E /* GlobalTimer.swift */; };
+		3F5877C3258A8C4500BD202E /* TimerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5877C2258A8C4500BD202E /* TimerTableView.swift */; };
+		3F5877CB258ABC3C00BD202E /* BLEClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5877AE2588511400BD202E /* BLEClass.swift */; };
 		3F6925A825800E1A00D4AEC8 /* Lepakkomaski_v1App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6925A725800E1A00D4AEC8 /* Lepakkomaski_v1App.swift */; };
 		3F6925AA25800E1A00D4AEC8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6925A925800E1A00D4AEC8 /* ContentView.swift */; };
 		3F6925AC25800E1C00D4AEC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F6925AB25800E1C00D4AEC8 /* Assets.xcassets */; };
@@ -66,6 +74,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3F587791258566BF00BD202E /* Bluetooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bluetooth.swift; sourceTree = "<group>"; };
+		3F5877962585694A00BD202E /* BLEPeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEPeripheral.swift; sourceTree = "<group>"; };
+		3F58779E2585821F00BD202E /* BLECentral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLECentral.swift; sourceTree = "<group>"; };
+		3F5877A925884F7000BD202E /* LepakkomaskiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepakkomaskiView.swift; sourceTree = "<group>"; };
+		3F5877AE2588511400BD202E /* BLEClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEClass.swift; sourceTree = "<group>"; };
+		3F5877BD258A8C0600BD202E /* GlobalTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalTimer.swift; sourceTree = "<group>"; };
+		3F5877C2258A8C4500BD202E /* TimerTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTableView.swift; sourceTree = "<group>"; };
 		3F6925A425800E1A00D4AEC8 /* Lepakkomaski-v1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lepakkomaski-v1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F6925A725800E1A00D4AEC8 /* Lepakkomaski_v1App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lepakkomaski_v1App.swift; sourceTree = "<group>"; };
 		3F6925A925800E1A00D4AEC8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -105,6 +120,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F5877B6258945FD00BD202E /* Vanhaa */ = {
+			isa = PBXGroup;
+			children = (
+				3F6925A925800E1A00D4AEC8 /* ContentView.swift */,
+				3F5877962585694A00BD202E /* BLEPeripheral.swift */,
+				3F58779E2585821F00BD202E /* BLECentral.swift */,
+				3F587791258566BF00BD202E /* Bluetooth.swift */,
+			);
+			path = Vanhaa;
+			sourceTree = "<group>";
+		};
+		3F5877C7258A8C9500BD202E /* Timer example */ = {
+			isa = PBXGroup;
+			children = (
+				3F5877BD258A8C0600BD202E /* GlobalTimer.swift */,
+				3F5877C2258A8C4500BD202E /* TimerTableView.swift */,
+			);
+			path = "Timer example";
+			sourceTree = "<group>";
+		};
 		3F69259B25800E1A00D4AEC8 = {
 			isa = PBXGroup;
 			children = (
@@ -129,7 +164,10 @@
 			isa = PBXGroup;
 			children = (
 				3F6925A725800E1A00D4AEC8 /* Lepakkomaski_v1App.swift */,
-				3F6925A925800E1A00D4AEC8 /* ContentView.swift */,
+				3F5877A925884F7000BD202E /* LepakkomaskiView.swift */,
+				3F5877AE2588511400BD202E /* BLEClass.swift */,
+				3F5877C7258A8C9500BD202E /* Timer example */,
+				3F5877B6258945FD00BD202E /* Vanhaa */,
 				3F6925AB25800E1C00D4AEC8 /* Assets.xcassets */,
 				3F6925B025800E1C00D4AEC8 /* Info.plist */,
 				3F6925AD25800E1C00D4AEC8 /* Preview Content */,
@@ -309,7 +347,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F6925AA25800E1A00D4AEC8 /* ContentView.swift in Sources */,
+				3F5877972585694A00BD202E /* BLEPeripheral.swift in Sources */,
+				3F5877AA25884F7100BD202E /* LepakkomaskiView.swift in Sources */,
+				3F587792258566C000BD202E /* Bluetooth.swift in Sources */,
+				3F58779F2585821F00BD202E /* BLECentral.swift in Sources */,
+				3F5877AF2588511400BD202E /* BLEClass.swift in Sources */,
+				3F5877BE258A8C0700BD202E /* GlobalTimer.swift in Sources */,
 				3F6925A825800E1A00D4AEC8 /* Lepakkomaski_v1App.swift in Sources */,
+				3F5877C3258A8C4500BD202E /* TimerTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +366,7 @@
 				3F6925C725800E1D00D4AEC8 /* ContentView.swift in Sources */,
 				3F6925CD25800E1D00D4AEC8 /* ComplicationController.swift in Sources */,
 				3F6925C525800E1D00D4AEC8 /* Lepakkomaski_v1App.swift in Sources */,
+				3F5877CB258ABC3C00BD202E /* BLEClass.swift in Sources */,
 				3F6925CB25800E1D00D4AEC8 /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

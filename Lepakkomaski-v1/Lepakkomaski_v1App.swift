@@ -11,7 +11,8 @@ import SwiftUI
 struct Lepakkomaski_v1App: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            //ContentView()
+            LepakkomaskiView()
         }
     }
 }
