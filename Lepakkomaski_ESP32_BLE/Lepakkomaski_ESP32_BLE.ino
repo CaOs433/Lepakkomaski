@@ -42,16 +42,13 @@ class MyCallbacks: public BLECharacteristicCallbacks {
           Serial.print(value[i]);
           // ...
         }
-
         Serial.println();
-
         // Switch cases for different values
         switch (value[0]) {
           case '0': Serial.println("RESET"); resetFunc(); // Call reset function if first char is '0'
           case '1': break; // ...
           case '2': break; // ...
           // ...
-
           default: break;
         }
       }
