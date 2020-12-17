@@ -1,8 +1,3 @@
-/*
-    Based on Neil Kolban example for IDF: https://github.com/nkolban/esp32-snippets/blob/master/cpp_utils/tests/BLE%20Tests/SampleWrite.cpp
-    Ported to Arduino ESP32 by Evandro Copercini
-*/
-
 #include <BLEDevice.h>
 #include <BLEUtils.h>
 #include <BLEServer.h>
@@ -15,8 +10,8 @@
 
 #define ht 5 // define the heart rate sensor Pin 
 #define shock 4 // define the shock sensor Pin 
-#define echoPin 25 //0 //2 // attach pin D2 Arduino to pin Echo of HC-SR04
-#define trigPin 26 //2 //3 //attach pin D3 Arduino to pin Trig of HC-SR04
+#define echoPin 25 // define the HC-SR04 echo Pin
+#define trigPin 26 // define the HC-SR04 trig Pin
 
 int counter;
 
@@ -50,11 +45,11 @@ void setup() {
   Serial.begin(115200);
   
   BLEDevice::init("Lepakkomaski");
-  /*BLEServer **/pServer = BLEDevice::createServer();
+  pServer = BLEDevice::createServer();
 
-  /*BLEService **/pService = pServer->createService(SERVICE_UUID);
+  pService = pServer->createService(SERVICE_UUID);
 
-  /*BLECharacteristic **/pCharacteristic = pService->createCharacteristic(
+  pCharacteristic = pService->createCharacteristic(
                                          CHARACTERISTIC_UUID,
                                          BLECharacteristic::PROPERTY_READ |
                                          BLECharacteristic::PROPERTY_WRITE
@@ -65,13 +60,12 @@ void setup() {
   pCharacteristic->setValue("Hello World");
   pService->start();
 
-  /*BLEAdvertising **/pAdvertising = pServer->getAdvertising();
+  pAdvertising = pServer->getAdvertising();
   pAdvertising->start();
 
   pinMode(trigPin, OUTPUT); // Sets the trigPin as an OUTPUT
   pinMode(echoPin, INPUT); // Sets the echoPin as an INPUT
-  Serial.println("Ultrasonic Sensor HC-SR04 Test"); // print some text in Serial Monitor
-  Serial.println("with Arduino ESP32");
+  Serial.println("Ultrasonic Sensor HC-SR04 with ESP32 - BLE");
 }
 
 void loop() {
@@ -125,7 +119,7 @@ int measure() {
 
 bool getShock() {
   int val = digitalRead(shock); // read the value from KY-002
-  if (val == HIGH ) {// when sensor detects shock, LED flashes  
+  if (val == HIGH ) { 
     return true;
   } else {
     return false;
