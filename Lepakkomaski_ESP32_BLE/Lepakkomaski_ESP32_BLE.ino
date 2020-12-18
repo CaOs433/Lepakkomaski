@@ -6,11 +6,13 @@
 // https://www.uuidgenerator.net/
 
 // The UUID's for BLE
-#define SERVICE_UUID        "4fafc201-1fb5-459e-8fcc-c5c9c331914b"
-#define CHARACTERISTIC_UUID "beb5483e-36e1-4688-b7f5-ea07361b26a8"
+#define SERVICE_UUID              "4fafc201-1fb5-459e-8fcc-c5c9c331914b"
+#define CHARACTERISTIC_UUID       "beb5483e-36e1-4688-b7f5-ea07361b26a8"
+#define SHOCK_CHARACTERISTIC_UUID "0c72cd85-ca45-46d9-a527-b5f92f815640"
 
-#define ht 5 // define the heart rate sensor Pin 
-#define shock 4 // define the shock sensor Pin 
+// Sensor pins
+#define ht      5 // define the heart rate sensor Pin 
+#define shock   4 // define the shock sensor Pin 
 #define echoPin 25 // define the HC-SR04 echo Pin
 #define trigPin 26 // define the HC-SR04 trig Pin
 
@@ -24,6 +26,7 @@ int distance = -1;
 BLEServer *pServer;
 BLEService *pService;
 BLECharacteristic *pCharacteristic;
+BLECharacteristic *shockCharacteristic;
 BLEAdvertising *pAdvertising;
 
 int measure();
@@ -75,7 +78,17 @@ void setup() {
   // Set callbacks to handle received data
   pCharacteristic->setCallbacks(new MyCallbacks());
   // Set value to charasteristic to be sent in it
-  pCharacteristic->setValue("Hello World");
+  pCharacteristic->setValue("Lepakkomaski - ESP32");
+  // Create charasteristic for the BLE service (this will include the shock sensor value)
+  shockCharacteristic = pService->createCharacteristic(
+                                         SHOCK_CHARACTERISTIC_UUID,
+                                         BLECharacteristic::PROPERTY_READ |
+                                         BLECharacteristic::PROPERTY_WRITE
+                                       );
+  // Set callbacks to handle received data
+  shockCharacteristic->setCallbacks(new MyCallbacks());
+  // Set value to charasteristic to be sent in it
+  shockCharacteristic->setValue("Lepakkomaski - ESP32");
   // Start the service
   pService->start();
   // Set and start adversiting of the BLE
@@ -89,7 +102,6 @@ void setup() {
 }
 
 void loop() {
-  //counter++;
   
   // Get shock sensor result
   bool gotShock = getShock();
@@ -97,13 +109,14 @@ void loop() {
   if (!gotShock) {
     // If so send 1 as a String value instead of the ditance by BLE
     String shockStr = String(1);
-    pCharacteristic->setValue(std::string(shockStr.c_str()));
-    // Wait till the shock has ended
-    while (!gotShock) {
-      Serial.println("SHOCK!!!");
-      delay(10);
-      gotShock = getShock();
-    }
+    shockCharacteristic->setValue(std::string(shockStr.c_str()));
+    // Print SHOCK!!! on terminal
+    Serial.println("SHOCK!!!");
+    delay(200);
+  } else {
+    // No shock, send '0'
+    String shockStr = String(0);
+    shockCharacteristic->setValue(std::string(shockStr.c_str()));
   }
 
   // Get distance
@@ -150,7 +163,5 @@ bool getShock() {
   int sVal = digitalRead(shock); // read the value from KY-002
   if (sVal == HIGH ) { 
     return true;
-  } else {
-    return false;
-  }
+  }; return false;
 }
