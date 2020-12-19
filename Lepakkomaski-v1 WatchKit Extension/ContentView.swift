@@ -90,7 +90,7 @@ struct ContentView: View {
                             if (bgColorShock == true) {
                                 bgColorShock = false
                             }
-                            //haptic(wkhType: .failure)
+                            haptic(wkhType: .failure)
                         }
                     } else {
                         if (deviceConnected == true) {
